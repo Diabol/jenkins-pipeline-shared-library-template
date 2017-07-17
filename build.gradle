@@ -1,0 +1,30 @@
+group 'se.diabol.jenkins.pipeline'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    main {
+        groovy {
+            srcDir "${project.rootDir.toString()}/vars"
+        }
+    }
+    test {
+        groovy {
+            srcDir "${project.rootDir.toString()}/test"
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+}
