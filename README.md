@@ -29,11 +29,13 @@ Structure
 The project contains an example pipeline method _maintainer_, which allows you to output the project maintainer in the console log.
 This is only used as an example. Adapt and add new classes according to your needs. 
 
-    │
+    ├── src                       (your source code classes goes here)
+    │   └── se.diabol.jenkins.pipeline.lib
+    │       └── Constants.groovy  (example Groovy class)
     ├── test                      (your unit test classes goes here)
     │   └── MaintainerTest.groovy (example unit test class)
     └── vars                      (your shared library classes goes here)
-        └── maintainer.groovy     (logic for your custom method - filename to match Jenkins pipeline task name)
+        └── maintainer.groovy     (logic for your custom method - filename to match Jenkins pipeline step name)
 
 Example usage in a Jenkins declarative pipeline:
 ```
