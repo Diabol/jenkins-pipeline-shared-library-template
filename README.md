@@ -72,6 +72,11 @@ Project maintained by Diabol AB
 Finished: SUCCESS
 
 ```
+Configuration
+----
+The library name used in the pipeline script must match what is configured as the library name in Jenkins > Configure system > Global Pipeline Libraries.
+See this blog post on how to configure shared groovy libraries programmatically: http://blog.diabol.se/?p=1052
+
 Contact and feedback
 ----
 Feel free to open an issue or pull request if you find areas of improvement.
