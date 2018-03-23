@@ -74,6 +74,45 @@ Project maintained by Diabol AB
 Finished: SUCCESS
 
 ```
+Considerations
+----
+For many use cases there is a benefit in providing a custom and simplified DSL to create Jenkins pipelines, instead of
+requiring repetitive pipeline configurations for each project. So instead of each project specifying a full configuration
+such as in the example above, the pipeline itself can be extracted to a pipeline method (residing in the _vars_ directory).
+
+Example:
+```vars/continuousDeliveryPipeline.groovy```
+
+```
+#!groovy
+
+def call(body) {
+    def config = [:]
+    body.resolveStrategy = Closure.DELEGATE_FIRST
+    body.delegate = config
+    body()
+    
+    pipeline {
+        agent any
+        stages {
+            stage('Commit stage') {
+                steps {
+                    maintainer config.maintainer
+                }
+            }
+        }
+    }
+}
+```
+... which allows your pipeline configuration (e.g. in a Jenkinsfile) to look like:
+```
+continuousDeliveryPipeline {
+    maintainer = 'Diabol AB'
+}
+```
+with a convenient DSL with less need for repetition in your pipeline configurations.
+
+
 Configuration
 ----
 The library name used in the pipeline script must match what is configured as the library name in Jenkins > Configure system > Global Pipeline Libraries.
